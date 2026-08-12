@@ -1,0 +1,61 @@
+{
+  "user_story_id": "US-002",
+  "user_story_title": "Просмотр каталога товаров",
+  "entities": [
+    "authorized user (role)",
+    "product (name, description, price, image)",
+    "inventory page (product catalog)",
+    "product card",
+    "product name element",
+    "product price element",
+    "product image element",
+    "Add to cart button",
+    "cart counter / badge",
+    "sort dropdown (filter)",
+    "sort option: Price (low to high)",
+    "sort option: Price (high to low)"
+  ],
+  "actions": [
+    "navigate to inventory page",
+    "view product list",
+    "view product name, price, image",
+    "click Add to cart button",
+    "select sort option low to high",
+    "select sort option high to low",
+    "verify product order",
+    "verify cart counter increment"
+  ],
+  "validations": [
+    "exactly 6 products are displayed",
+    "each product shows a name",
+    "each product shows a price",
+    "each product shows an image",
+    "Add to cart button is available for every product",
+    "sort low to high orders products by ascending price",
+    "sort high to low orders products by descending price"
+  ],
+  "edge_cases": [
+    "products with identical prices (stable sort order)",
+    "broken product images (problem_user)",
+    "slow-loading catalog (performance_glitch_user)",
+    "sort selection persistence after page refresh",
+    "special characters in product names",
+    "first and last item after sorting are min/max price"
+  ],
+  "risk_areas": [
+    "image rendering failure",
+    "incorrect product count",
+    "broken sorting logic",
+    "UI usability of sort dropdown",
+    "performance under slow-loading account"
+  ],
+  "test_coverage_areas": [
+    "product list display",
+    "add to cart availability",
+    "sort by price low to high",
+    "sort by price high to low",
+    "image rendering",
+    "product count",
+    "sort stability on equal prices"
+  ]
+}

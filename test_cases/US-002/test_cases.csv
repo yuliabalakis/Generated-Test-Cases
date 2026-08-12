@@ -1,0 +1,33 @@
+id,title,preconditions,steps,expected_result,priority,type,automation_ready
+US002-TC-001,"View product catalog with six items","User is logged in with standard_user","1. Open https://www.saucedemo.com/
+2. Login with standard_user / secret_sauce
+3. Land on inventory page","Inventory page displays exactly 6 products",High,Positive,Yes
+US002-TC-002,"Each product shows name price and image","User is logged in and on inventory page","1. Inspect every product card
+2. Check product name element
+3. Check product price element
+4. Check product image element","Each of the 6 products has a visible name price and image",High,Positive,Yes
+US002-TC-003,"Add to cart button available for every product","User is logged in and on inventory page","1. Inspect every product card
+2. Verify Add to cart button presence","Add to cart button is available on each of the 6 products",High,Positive,Yes
+US002-TC-004,"Sort products by price low to high","User is logged in and on inventory page","1. Select sort option Price (low to high)
+2. Observe product order","Products are ordered by ascending price (cheapest first)",High,Positive,Yes
+US002-TC-005,"Sort products by price high to low","User is logged in and on inventory page","1. Select sort option Price (high to low)
+2. Observe product order","Products are ordered by descending price (most expensive first)",High,Positive,Yes
+US002-TC-006,"Catalog does not load without login","User is on login page and not authenticated","1. Open https://www.saucedemo.com/inventory.html directly
+2. Observe page","User is redirected to login page and no product catalog is shown",High,Negative,Yes
+US002-TC-007,"Product count is not empty","User is logged in and on inventory page","1. Count product cards","Product count is not 0 and equals 6",Medium,Negative,Yes
+US002-TC-008,"No Add to cart button on empty catalog state","User is logged in with a drained catalog (mocked)","1. Force empty inventory state
+2. Observe product area","No Add to cart buttons are rendered when catalog is empty",Medium,Negative,Yes
+US002-TC-009,"Sort remains consistent with corrupt price data","User is logged in and on inventory page with mocked corrupt price","1. Force one product price to be non-numeric
+2. Select sort option","Sorting does not crash and corrupt item is handled gracefully",Medium,Negative,Yes
+US002-TC-010,"Image does not render for broken image","User is logged in with problem_user","1. Open inventory page
+2. Inspect product images","Broken image is detected and reported (image not blank)",Medium,Negative,Yes
+US002-TC-011,"Sort with identical prices keeps stable order","User is logged in and on inventory page","1. Mock two products with identical price
+2. Sort by price
+3. Observe their relative order","Products with equal price keep a stable deterministic order",Medium,Edge,Yes
+US002-TC-012,"Sort selection persists after page refresh","User is logged in and on inventory page","1. Select sort option Price (high to low)
+2. Refresh page
+3. Observe sort dropdown","Selected sort option is preserved after refresh",Low,Edge,Yes
+US002-TC-013,"First and last item are min and max after sort","User is logged in and on inventory page","1. Sort by Price (low to high)
+2. Compare first and last product price","First product has minimum price and last product has maximum price",Medium,Edge,Yes
+US002-TC-014,"Catalog loads under slow account","User is logged in with performance_glitch_user","1. Open inventory page
+2. Wait for products to load","Catalog eventually loads all 6 products despite delayed rendering",Low,Edge,Yes
