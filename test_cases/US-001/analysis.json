@@ -1,0 +1,78 @@
+{
+  "user_story_id": "US-001",
+  "user_story_title": "User Authorization",
+  "entities": [
+    "registered user (role)",
+    "guest user (implied role)",
+    "username input field",
+    "password input field",
+    "Login button",
+    "Username label",
+    "Password label",
+    "error message: Epic sadface: Username and password do not match any user in this service",
+    "error message: Epic sadface: Username is required",
+    "error message: Epic sadface: Password is required",
+    "error message: Epic sadface: Sorry, this user has been locked out.",
+    "authentication service",
+    "session manager",
+    "product catalog service",
+    "credentials (username, password)",
+    "user session",
+    "user profile"
+  ],
+  "actions": [
+    "enter username",
+    "enter password",
+    "click Login button",
+    "navigate to login page",
+    "open side menu",
+    "click Logout",
+    "validate input fields",
+    "authenticate credentials",
+    "redirect to inventory page",
+    "display error message",
+    "create session"
+  ],
+  "validations": [
+    "username is required",
+    "password is required",
+    "username and password must match an existing user",
+    "user account must not be locked",
+    "Login button active only when both fields are filled"
+  ],
+  "edge_cases": [
+    "empty username and empty password",
+    "only username entered (password empty)",
+    "only password entered (username empty)",
+    "whitespace-only input",
+    "leading/trailing spaces in username",
+    "uppercase username (case sensitivity)",
+    "special characters in username/password",
+    "SQL injection payload in username/password",
+    "XSS payload in username/password",
+    "locked out user account",
+    "maximum input length"
+  ],
+  "risk_areas": [
+    "authentication bypass via SQL injection",
+    "stored/reflected XSS in input fields",
+    "information disclosure in error messages",
+    "brute force / rate limiting absence",
+    "session fixation",
+    "error message consistency (credential enumeration)"
+  ],
+  "test_coverage_areas": [
+    "successful login",
+    "invalid username",
+    "invalid password",
+    "empty username",
+    "empty password",
+    "Login button enable/disable state",
+    "locked out user",
+    "logout",
+    "case sensitivity",
+    "whitespace handling",
+    "SQL injection security",
+    "XSS security"
+  ]
+}

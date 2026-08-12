@@ -1,0 +1,49 @@
+name: AI-Driven QA Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      user_story_id:
+        description: 'User Story ID (e.g., US-001)'
+        required: true
+        default: 'US-001'
+      google_doc_url:
+        description: 'Google Doc URL with User Stories'
+        required: true
+        default: 'https://docs.google.com/document/d/1w1ZtrX9bzP8teiP_ZNpMmf5q2E_lWEgyXk0DV_d_R2Q/edit?tab=t.0'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-import:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests python-dotenv google-docs-api
+
+      - name: Run AI QA Workflow
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          USER_STORY_ID: ${{ github.event.inputs.user_story_id }}
+          GOOGLE_DOC_URL: ${{ github.event.inputs.google_doc_url }}
+        run: |
+          python scripts/generate_tests.py
+
+      - name: Commit generated test cases
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add test_cases/ requirements/
+          git commit -m "AI: Generate test cases for ${{ github.event.inputs.user_story_id }}" || echo "No changes"
+          git push
